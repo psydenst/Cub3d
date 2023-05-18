@@ -14,7 +14,10 @@ NAME		= cub3d
 
 SRC			= cub3d.c \
 			  hook.c \
-			  asdw.c
+			  asdw.c \
+			  draw_vertical_lines.c \
+			  my_mlx_pixel_put.c \
+			  set_image_data.c
 
 OBJ			= $(SRC:.c=.o)
 
@@ -36,7 +39,7 @@ $(NAME)		: $(OBJ) $(MLX_LINUX)
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 else
 $(NAME)		: $(OBJ) $(MLX)
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) -Lmlx -lmlx  mlx/libmlx.a -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o			: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@

@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "mlx/mlx.h" 
+#include <math.h>
 
 typedef struct s_map
 {

@@ -58,8 +58,9 @@ int main()
 
   while(1)
 {
-	img.img = mlx_new_image(map.mlx_ptr, screenWidth, screenHeigth);
+	img.img = mlx_new_image(map.mlx_ptr, screenWidth, screenHeight);
 	set_image_data(&img);
+	t_line line;
 	line.x = 0;
 	
 	while (line.x < screenWidth)
@@ -137,7 +138,7 @@ int main()
           side = 1;
         }
         //Check if ray has hit a wall
-        if(map[mapX][mapY] > 0) hit = 1;
+        if(worldMap[mapX][mapY] > 0) hit = 1;
       }
       //Calculate distance projected on camera direction. This is the shortest distance from the point where the wall is
       //hit to the camera plane. Euclidean to center camera point would give fisheye effect!
@@ -149,10 +150,10 @@ int main()
       else          perpWallDist = (sideDistY - deltaDistY);
 
       //Calculate height of line to draw on screen
-      line.heigth = (int)(screenHeigth / perpWallDist);
+      line.height = (int)(screenHeight / perpWallDist);
 
       //calculate lowest and highest pixel to fill in current stripe
-	  line.y_start = -line.hHeight / 2 + screenHeight / 2;
+	  line.y_start = -line.height / 2 + screenHeight / 2;
       if(line.y_start < 0)
 		  line.y_start = 0;
 
@@ -161,7 +162,7 @@ int main()
 		  line.y_end = screenHeight - 1;
 
       //choose wall color
-      switch(map[mapX][mapY])
+      switch(worldMap[mapX][mapY])
       {
         case 1:  line.color = 0xFF0000;    break; //red
         case 2:  line.color = 0x00FF00;  break; //green
@@ -171,57 +172,14 @@ int main()
       }
 
       //give x and y sides different brightness
-      if(side == 1) {color = color / 2;}
+   //   if(side == 1) {color = color / 2;}
 
 	  draw_vertical_line(&img, &line);
 	  line.x++;
     }
-/*
-    //timing for input and FPS counter
-    oldTime = time;
-    time = getTicks();
-    double frameTime = (time - oldTime) / 1000.0; //frameTime is the time this frame has taken, in seconds
-    print(1.0 / frameTime); //FPS counter
-    redraw();
-    cls();
-
-    //speed modifiers
-    double moveSpeed = frameTime * 5.0; //the constant value is in squares/second
-    double rotSpeed = frameTime * 3.0; //the constant value is in radians/second
-    readKeys();
-    //move forward if no wall in front of you
-    if(keyDown(SDLK_UP))
-    {
-      if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
-      if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
-    }
-    //move backwards if no wall behind you
-    if(keyDown(SDLK_DOWN))
-    {
-      if(worldMap[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
-      if(worldMap[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
-    }
-    //rotate to the right
-    if(keyDown(SDLK_RIGHT))
-    {
-      //both camera direction and camera plane must be rotated
-      double oldDirX = dirX;
-      dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-      dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-      double oldPlaneX = planeX;
-      planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-      planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
-    }
-    //rotate to the left
-    if(keyDown(SDLK_LEFT))
-    {
-      //both camera direction and camera plane must be rotated
-      double oldDirX = dirX;
-      dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-      dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-      double oldPlaneX = planeX;
-      planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-      planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
-   	} */
-  mlx_loop(map.mlx_ptr);
+	mlx_put_image_to_window(map.mlx_ptr, map.mlx_win, img.img, 0, 0);
+	mlx_destroy_image(map.mlx_ptr, img.img);	
+	mlx_loop(map.mlx_ptr);
+}
+	return (0);
 }
