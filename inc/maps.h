@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asdw.c                                             :+:      :+:    :+:   */
+/*   maps.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 22:23:35 by psydenst          #+#    #+#             */
-/*   Updated: 2023/05/17 22:26:07 by psydenst         ###   ########.fr       */
+/*   Created: 2023/05/23 18:44:08 by psydenst          #+#    #+#             */
+/*   Updated: 2023/06/01 02:52:09 by almelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef MAPS_H
+# define MAPS_H
 
-int	keyhook_w(t_map *map)
+typedef struct s_map
 {
-	printf("w\n");
-	return (0);
-}
+	int		fd;
+	int		window_height;
+	int		window_width;
+	int		map_start;
+	char	*path_NO;
+	char	*path_SO;
+	char	*path_WE;
+	char	*path_EA;
+	char	**world_map;
+	char	*floor;
+	char	*ciel;
+    int     pos_x;
+    int     pos_y;
+    char    direction;
+    int     sign;
+	int		valid;
+} t_map;
 
-int	keyhook_d(t_map *map)
-{
-	printf("d\n");
-	return (0);
-}
-
-int	keyhook_a(t_map *map)
-{
-	printf("a\n");
-	return (0);
-}
-
-int	keyhook_s(t_map *map)
-{
-	printf("s\n");
-	return (0);
-}
-
-int	keyhook_esc(t_map *map)
-{
-	exit_func(map, "You have pressed esc");
-	return (0);
-}
+#endif
