@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 22:36:22 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/02 15:18:29 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/06/12 22:54:58 by almelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,29 @@ void	free_main(t_data *data)
 		free(data->map.ciel);
 	if (data->map.world_map != NULL)
 		free_matrix(&data->map);
+  if (data->map.map_copy != NULL)
+    free_copy(&data->map);
+}
+
+void  free_copy(t_map *map)
+{
+  int i;
+
+  i = -1;
+  while (++i <= map->window_height)
+    free(map->map_copy[i]);
+  free(map->map_copy);
 }
 
 void	free_matrix(t_map *map)
 {
-	while (map->world_map[map->map_start])
+  int i;
+
+  i = -1;
+  while (map->world_map[map->map_start])
 	{
 		free(map->world_map[map->map_start]);
 		map->map_start++;
 	}
+	free(map->world_map);
 }

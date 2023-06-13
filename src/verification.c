@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:33:00 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/01 22:12:02 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/06/12 23:02:32 by almelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	validate_cub(char *map_name)
 		b++;
 		a--;
 	}
+	haystack[x] = '\0';
 	if (ft_is_cub(haystack) == 1)
 		return (1);
 	else
@@ -76,58 +77,77 @@ int	verification_main(char **argv, int argc, t_data *data)
 	}
 	if (validate_main(&data->map) == 0)
 		return (0);
+	if (empty_textures(&data->map) == 1)
+			return (0);
 	return (1);
+}
+
+int	empty_textures(t_map *map)
+{
+	if (map->direction == '\0' || map->path_NO == NULL || map->path_SO == NULL ||
+	map->path_WE == NULL || map->path_EA == NULL || map->floor == NULL || map->ciel == NULL)
+	{
+		printf("Missing textures\n");
+		return (1);
+	}
+	return (0);
 }
 
 int	wall_spaces(t_map *map)
 {
-	char	**map_copy;
-	int		i;
+	int a;
 
-	i = 0;
-	map_copy = ft_calloc(map->window_height, sizeof(char *));
-	while (map->world_map[i])
+	map->i = 0;
+	map->length = 0;
+	map->map_copy = malloc(sizeof(char *) * map->window_height);
+	map->i = -1;
+	a = 0;
+	while (map->i++ < map->window_height - map->map_start - 1)
+		map->map_copy[map->i] = malloc(sizeof(char *) * (map->window_width + 1));
+	map->i = map->map_start;
+	while (map->i < map->window_height)
 	{
-		map_copy[i] = ft_strdup(map->world_map[i]);
-		while ((int)ft_strlen(map_copy[i]) < map->window_width)
+		map->j = 0;
+		while (map->j < map->window_width)
 		{
-			map_copy[i] = ft_strjoin(map_copy[i], "k");
+			if (map->world_map[map->i][map->j] != '\0')
+				map->map_copy[a][map->j] = map->world_map[map->i][map->j];
+			else
+				map->map_copy[a][map->j] = 'k';
+			map->j++;
 		}
-		i++;
+		map->map_copy[a][map->j] = '\0';
+		map->i++;
+		a++;
 	}
-	if (check_above(map_copy, map->window_height) == 0)
-		map->valid = -1;
-	i = 0;
-	while (i < map->window_height)
-	{
-		free(map_copy[i]);
-		i++;
-	}
-	if (map->valid == -1)
-		return (0);
 	return (1);
 }
 
-int	check_above(char **str, int height)
+
+int	check_above(t_map *map)
 {
 	int	i;
 	int	j;
 
-	i = 1;
-	while (i < height)
+	i = 0;
+	while (i < map->window_height - map->map_start - 1)
 	{
 		j = 0;
-		while (str[i][j])
+		while (map->map_copy[i][j])
 		{
-			if (str[i][j] == '0')
+			if (map->map_copy[i][j] == '0')
 			{
-				if (str[i - 1][j] == 'k' || str[i][j + 1] == 'k' ||
-				str[i][j - 1] == 'k')
+				if (map->map_copy[i - 1][j] == 'k' ||map->map_copy [i][j + 1] == 'k' ||
+				map->map_copy[i][j - 1] == 'k')
 					return (0);
 			}
 			j++;
 		}
 		i++;
 	}
+	i = 0;
+//	while (i++ <= map->window_height)
+//	free(map->map_copy[i]);
+//	free(map->map_copy);
 	return (1);
 }

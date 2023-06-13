@@ -31,6 +31,10 @@ typedef struct s_map
     char    direction;
     int     sign;
 	int		valid;
+	int		i;
+	int		j;
+	int		length;
+	char	**map_copy;
 } t_map;
 
 #endif

@@ -6,11 +6,10 @@
 /*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:03:20 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/02 14:52:46 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:46:32 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// INCLUDE 42 HEADER
 
 #include "../inc/cub3d.h"
 
@@ -35,15 +34,16 @@ int	is_valid(t_map *map)
 	int	height;
 	int	i;
 
-	i = 1;
+	i = map->map_start + 1;
 	height = 0;
 	while (map->world_map[height])
 		height++;
-	if (is_one(map, 0) == 0 || is_one(map, height - 1) == 0)
+	if (is_one(map, map->map_start) == 0 || is_one(map, map->window_height - 1) == 0)
 		return (0);
 	if (nsow10(map, i) == 0 || map->sign > 1)
 		return (0);
-	if (wall_spaces(map) == 0)
+	wall_spaces(map);
+	if (check_above(map) == 0)
 		return (0);
 	return (1);
 }
@@ -64,23 +64,22 @@ int	is_one(t_map *map, int i)
 
 void	biggest_width(t_map *map)
 {
-	int	x;
 	int	y;
+	int i;
+	int length;
 
-	x = 0;
-	while (map->world_map[x] == NULL)
-			x++;
-	map->map_start = x;
-	y = x + 1;
+	i = map->map_start;
+	y = i;
 	while (map->world_map[y])
 			y++;
-	map->window_height = y - x;
-	map->window_width = ft_strlen(map->world_map[x]);
-	while (map->world_map[x])
+	map->window_height = y;
+	map->window_width = ft_strlen(map->world_map[i]);
+	while (i < map->window_height)
 	{
-		if ((int)ft_strlen(map->world_map[x]) > map->window_width)
-			map->window_width = (int)ft_strlen(map->world_map[x]);
-		x++;
+		length = ft_strlen(map->world_map[i]);
+		if (length > map->window_width)
+				map->window_width = length;
+		i++;		
 	}
 }
 

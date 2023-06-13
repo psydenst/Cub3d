@@ -6,7 +6,7 @@
 /*   By: almelo <almelo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:21:09 by almelo            #+#    #+#             */
-/*   Updated: 2023/06/02 15:06:13 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/06/02 17:38:12 by almelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,17 @@ int		ft_is_cub(char *haystack);
 int		ft_is_cub(char *haystack);
 int		verification_main(char **argv, int argc, t_data *data);
 int		wall_spaces(t_map *map);
-int		check_above(char **str, int height);
+int		check_above(t_map *map);
+int empty_textures(t_map *map);
 
 // FREE_MAIN.C
 void	free_main(t_data *data);
 void	free_matrix(t_map *map);
+void	free_copy(t_map *map);
 
 // 	TEXTURES_PATH
 int		textures_main(t_map *map);
-int		textures_main2(t_map *map, int i, int j);
+int		textures_main2(t_map *map, int i);
 int		get_NO(t_map *map, int i);
 int		get_SO(t_map *map, int i);
 int		get_WE(t_map *map, int i);

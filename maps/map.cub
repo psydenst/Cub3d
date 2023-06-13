@@ -1,4 +1,12 @@
+NO ./textures/bluestone.xpm
+  
+SO ./textures/colorstone.xpm
+WE ./textures/eagle.xpm
+EA ./textures/greystone.xpm
+F 10,80,0
+C 25,100,220
+
 11111
 10001
-1f001
+10S01
 11111

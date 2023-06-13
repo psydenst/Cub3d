@@ -6,7 +6,7 @@
 /*   By: almelo <almelo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:38:11 by almelo            #+#    #+#             */
-/*   Updated: 2023/06/02 00:44:18 by almelo           ###   ########.fr       */
+/*   Updated: 2023/06/12 22:41:11 by almelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	handle_exit(t_data *data)
 {
+	free_main(data);
 	mlx_destroy_window(data->mlx, data->win);
 	exit(0);
 }
