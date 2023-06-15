@@ -14,7 +14,7 @@
 
 int	validate_main(t_map *map)
 {
-	t_wla	wl;
+	t_wl	wl;
 
 	if (textures_main(map, &wl) == 0)
 	{

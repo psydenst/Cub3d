@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almelo <almelo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:21:09 by almelo            #+#    #+#             */
-/*   Updated: 2023/06/02 17:38:12 by almelo           ###   ########.fr       */
+/*   Updated: 2023/06/14 21:03:07 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ void	free_matrix(t_map *map);
 void	free_copy(t_map *map);
 
 // 	TEXTURES_PATH
-int		textures_main(t_map *map);
+int		textures_main(t_map *map, t_wl *wl);
 int		textures_main2(t_map *map, int i);
-int		get_NO(t_map *map, int i);
-int		get_SO(t_map *map, int i);
-int		get_WE(t_map *map, int i);
-int		get_EA(t_map *map, int i);
+int		textures_main3(t_map *map, int i);
+int		get_no(t_map *map, int i);
+int		get_so(t_map *map, int i);
+int		get_we(t_map *map, int i);
+int		get_ea(t_map *map, int i);
 int		not_map(t_map *map, int i);
 int		floor_ciel(t_map *map, int i);
 

@@ -35,6 +35,18 @@ typedef struct s_map
 	int		j;
 	int		length;
 	char	**map_copy;
+	int		a;
 } t_map;
+
+typedef struct s_wl
+{
+	char*	ret;
+	char*	joker;
+	int		begin;
+	int		end;
+	char*	temp;
+	int		i;
+	int		j;
+} t_wl;
 
 #endif
