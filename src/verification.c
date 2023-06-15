@@ -78,14 +78,15 @@ int	verification_main(char **argv, int argc, t_data *data)
 	if (validate_main(&data->map) == 0)
 		return (0);
 	if (empty_textures(&data->map) == 1)
-			return (0);
+		return (0);
 	return (1);
 }
 
 int	empty_textures(t_map *map)
 {
-	if (map->direction == '\0' || map->path_NO == NULL || map->path_SO == NULL ||
-	map->path_WE == NULL || map->path_EA == NULL || map->floor == NULL || map->ciel == NULL)
+	if (map->direction == '\0' || map->path_NO == NULL
+		|| map->path_SO == NULL || map->path_WE == NULL
+		|| map->path_EA == NULL || map->floor == NULL || map->ciel == NULL)
 	{
 		printf("Missing textures\n");
 		return (1);
@@ -95,15 +96,14 @@ int	empty_textures(t_map *map)
 
 int	wall_spaces(t_map *map)
 {
-	int a;
-
 	map->i = 0;
 	map->length = 0;
 	map->map_copy = malloc(sizeof(char *) * map->window_height);
 	map->i = -1;
-	a = 0;
+	map->a = 0;
 	while (map->i++ < map->window_height - map->map_start - 1)
-		map->map_copy[map->i] = malloc(sizeof(char *) * (map->window_width + 1));
+		map->map_copy[map->i] = malloc(sizeof(char *)
+				* (map->window_width + 1));
 	map->i = map->map_start;
 	while (map->i < map->window_height)
 	{
@@ -111,18 +111,17 @@ int	wall_spaces(t_map *map)
 		while (map->j < map->window_width)
 		{
 			if (map->world_map[map->i][map->j] != '\0')
-				map->map_copy[a][map->j] = map->world_map[map->i][map->j];
+				map->map_copy[map->a][map->j] = map->world_map[map->i][map->j];
 			else
-				map->map_copy[a][map->j] = 'k';
+				map->map_copy[map->a][map->j] = 'k';
 			map->j++;
 		}
-		map->map_copy[a][map->j] = '\0';
+		map->map_copy[map->a][map->j] = '\0';
 		map->i++;
-		a++;
+		map->a++;
 	}
 	return (1);
 }
-
 
 int	check_above(t_map *map)
 {
@@ -137,8 +136,9 @@ int	check_above(t_map *map)
 		{
 			if (map->map_copy[i][j] == '0')
 			{
-				if (map->map_copy[i - 1][j] == 'k' ||map->map_copy [i][j + 1] == 'k' ||
-				map->map_copy[i][j - 1] == 'k')
+				if (map->map_copy[i - 1][j] == 'k'
+					|| map->map_copy [i][j + 1] == 'k'
+					|| map->map_copy[i][j - 1] == 'k')
 					return (0);
 			}
 			j++;
@@ -146,8 +146,5 @@ int	check_above(t_map *map)
 		i++;
 	}
 	i = 0;
-//	while (i++ <= map->window_height)
-//	free(map->map_copy[i]);
-//	free(map->map_copy);
 	return (1);
 }

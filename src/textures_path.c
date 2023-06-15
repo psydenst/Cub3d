@@ -3,43 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   textures_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
+/*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:23:28 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/12 22:55:51 by almelo           ###   ########.fr       */
+/*   Updated: 2023/06/14 21:00:45 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	textures_main(t_map *map)
+int	textures_main(t_map *map, t_wl *wl)
 {
-	int i;
-	int j;
+	wl->i = 0;
+	while (not_map(map, wl->i))
+	{
+		if (ft_strncmp(map->world_map[wl->i], "NO", 2) == 0)
+		{
+			if (get_no(map, wl->i) == 0)
+				return (printf("Texture not found\n"));
+		}
+		else if (ft_strncmp(map->world_map[wl->i], "SO", 2) == 0)
+		{
+			if (get_so(map, wl->i) == 0)
+				return (printf("Texture not found\n"));
+		}
+		else if (ft_strncmp(map->world_map[wl->i], "WE", 2) == 0)
+		{
+			if (get_we(map, wl->i) == 0)
+				return (printf("Texture not found\n"));
+		}
+		textures_main2(map, wl->i);
+		wl->i++;
+	}
+	textures_main3(map, wl->i);
+	return (1);
+}
 
-	j = 0;
-	i = 0;
-
+int	textures_main2(t_map *map, int i)
+{
 	while (not_map(map, i))
 	{
-		if (ft_strncmp(map->world_map[i], "NO", 2) == 0)
+		if (ft_strncmp(map->world_map[i], "EA", 2) == 0)
 		{
-			if(get_NO(map, i) == 0)
+			if (get_ea(map, i) == 0)
 				return (printf("Texture not found\n"));
 		}
-		else if (ft_strncmp(map->world_map[i], "SO", 2) == 0)
+		else if (map->world_map[i][0] == 'F' || map->world_map[i][0] == 'C')
 		{
-			if(get_SO(map, i) == 0)
+			if (floor_ciel(map, i) == 0)
 				return (printf("Texture not found\n"));
 		}
-		else if (ft_strncmp(map->world_map[i], "WE", 2) == 0)
-		{
-			if(get_WE(map, i) == 0)
-				return (printf("Texture not found\n"));
-		}
-		textures_main2(map, i);
 		i++;
 	}
+	return (1);
+}
+
+int	textures_main3(t_map *map, int i)
+{
+	int	j;
+
+	j = 0;
 	while (j < i)
 	{
 		free(map->world_map[j]);
@@ -48,37 +71,17 @@ int	textures_main(t_map *map)
 	}
 	map->map_start = i;
 	return (1);
-
-}
-
-int	textures_main2(t_map *map, int i)
-{
-	while(not_map(map, i))
-	{
-		if (ft_strncmp(map->world_map[i], "EA", 2) == 0)
-		{
-			if(get_EA(map, i) == 0)
-				return (printf("Texture not found\n"));
-		}
-		else if (map->world_map[i][0] == 'F' || map->world_map[i][0] == 'C')
-		{
-			if(floor_ciel(map, i) == 0)
-				return (printf("Texture not found\n"));
-		}
-		i++;
-	}
-	return (1);
 }
 
 int	floor_ciel(t_map *map, int i)
 {
 	if (map->world_map[i][0] == 'F' && map->floor == NULL)
-			map->floor = ft_substr(map->world_map[i], 1, 
-						ft_strlen(map->world_map[i]) - 1);
+			map->floor = ft_substr(map->world_map[i], 1,
+				ft_strlen(map->world_map[i]) - 1);
 	else
 		if (map->ciel == NULL)
-			map->ciel = ft_substr(map->world_map[i], 1, 
-						ft_strlen(map->world_map[i]) - 1);
+			map->ciel = ft_substr(map->world_map[i], 1,
+					ft_strlen(map->world_map[i]) - 1);
 	return (1);
 }
 
@@ -88,64 +91,3 @@ int	not_map(t_map *map, int i)
 		return (0);
 	return (1);
 }
-
-int	get_NO(t_map *map, int i)
-{
-	int fd;
-
-	map->path_NO = ft_substr(map->world_map[i], 2, 
-						ft_strlen(map->world_map[i]) - 2);
-	if ((fd = open(map->path_NO, O_RDONLY) > 0))
-		return (1);
-	else
-	{
-		free(map->path_NO);
-		return (0);
-	}
-}
-
-int	get_SO(t_map *map, int i)
-{
-	int fd;
-	map->path_SO = ft_substr(map->world_map[i], 2, 
-						ft_strlen(map->world_map[i]) - 2);
-	if ((fd = open(map->path_SO, O_RDONLY) > 0))
-		return (1);
-	else
-	{
-		free(map->path_SO);
-		return (0);
-	}
-}
-
-int	get_WE(t_map *map, int i)
-{
-	int fd;
-
-	map->path_WE = ft_substr(map->world_map[i], 2, 
-						ft_strlen(map->world_map[i]) - 2);
-	if ((fd = open(map->path_WE, O_RDONLY) > 0))
-		return (1);
-	else
-	{
-		free(map->path_WE);
-		return (0);
-	}
-}
-
-int	get_EA(t_map *map, int i)
-{
-	int fd;
-
-	if (map->path_EA == NULL)
-		map->path_EA = ft_substr(map->world_map[i], 2, 
-						ft_strlen(map->world_map[i]) - 2);
-	if ((fd = open(map->path_EA, O_RDONLY) > 0))
-		return (1);
-	else
-	{
-		free(map->path_EA);
-		return (0);
-	}
-}
-

@@ -28,29 +28,29 @@ void	free_main(t_data *data)
 		free(data->map.ciel);
 	if (data->map.world_map != NULL)
 		free_matrix(&data->map);
-  if (data->map.map_copy != NULL)
-    free_copy(&data->map);
+	if (data->map.map_copy != NULL)
+		free_copy(&data->map);
 }
 
-void  free_copy(t_map *map)
+void	free_copy(t_map *map)
 {
-  int i;
+	int	i;
 
-  i = -1;
-  while (++i <= map->window_height)
-    free(map->map_copy[i]);
-  free(map->map_copy);
+	i = -1;
+	while (++i <= map->window_height - map->map_start)
+		free(map->map_copy[i]);
+	free(map->map_copy);
 }
 
 void	free_matrix(t_map *map)
 {
-  int i;
+	int	i;
 
-  i = -1;
-  while (map->world_map[map->map_start])
+	i = map->map_start;
+	while (map->world_map[i])
 	{
-		free(map->world_map[map->map_start]);
-		map->map_start++;
+		free(map->world_map[i]);
+		i++;
 	}
 	free(map->world_map);
 }

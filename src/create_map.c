@@ -56,32 +56,29 @@ void	to_matrix(t_data *data, char *joker)
 
 char	*remove_sp(char *str)
 {
-	char	*ret;
-	char	*joker;	
-	int		begin;
-	int		end;
-	char	*temp;
+	t_wl	wl;
 
 	if (str == NULL)
 		return (NULL);
-	ret = "";
-	joker = NULL;
-	begin = 0;
-	end = 0;
-	while (str[begin])
+	wl.ret = "";
+	wl.joker = NULL;
+	wl.begin = 0;
+	wl.end = 0;
+	while (str[wl.begin])
 	{
-		begin = end;
-		while (str[end] != ' ' && str[end] != '\t' && str[end] != '\0')
-			end++;
-		joker = ft_substr(str, begin, end - begin);
-		while ((str[end] == ' ' || str[end] == '\t') && str[end] != '\0')
-				end++;
-		temp = ret;
-		ret = ft_strjoin(ret, joker);
-		free(joker);
-		if (begin > 0)
-			free(temp);
+		wl.begin = wl.end;
+		while (str[wl.end] != ' ' && str[wl.end] != '\t' && str[wl.end] != '\0')
+			wl.end++;
+		wl.joker = ft_substr(str, wl.begin, wl.end - wl.begin);
+		while ((str[wl.end] == ' ' || str[wl.end] == '\t')
+			&& str[wl.end] != '\0')
+				wl.end++;
+		wl.temp = wl.ret;
+		wl.ret = ft_strjoin(wl.ret, wl.joker);
+		free(wl.joker);
+		if (wl.begin > 0)
+			free(wl.temp);
 	}
 	free(str);
-	return (ret);
+	return (wl.ret);
 }

@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../inc/cub3d.h"
 
 int	validate_main(t_map *map)
 {
-	if (textures_main(map) == 0)
+	t_wla	wl;
+
+	if (textures_main(map, &wl) == 0)
 	{
 		printf("Invalid textures\n");
 		return (0);
@@ -38,7 +39,8 @@ int	is_valid(t_map *map)
 	height = 0;
 	while (map->world_map[height])
 		height++;
-	if (is_one(map, map->map_start) == 0 || is_one(map, map->window_height - 1) == 0)
+	if (is_one(map, map->map_start) == 0
+		|| is_one(map, map->window_height - 1) == 0)
 		return (0);
 	if (nsow10(map, i) == 0 || map->sign > 1)
 		return (0);
@@ -65,8 +67,8 @@ int	is_one(t_map *map, int i)
 void	biggest_width(t_map *map)
 {
 	int	y;
-	int i;
-	int length;
+	int	i;
+	int	length;
 
 	i = map->map_start;
 	y = i;
@@ -79,7 +81,7 @@ void	biggest_width(t_map *map)
 		length = ft_strlen(map->world_map[i]);
 		if (length > map->window_width)
 				map->window_width = length;
-		i++;		
+		i++;
 	}
 }
 

@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-static void init_data(t_data *data)
+static	void	init_data(t_data *data)
 {
 	data->map.sign = 0;
 	data->map.path_NO = NULL;
