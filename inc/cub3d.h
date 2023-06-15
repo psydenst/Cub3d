@@ -19,7 +19,7 @@
 # define ROT_SPEED		0.1
 # define MOVE_SPEED		0.25
 
-# include <mlx.h>
+# include "../mlx_linux/mlx.h" 
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
