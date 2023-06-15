@@ -17,7 +17,7 @@ static void	load_texture_no(t_data *data)
 	data->tex_no.img = mlx_xpm_file_to_image
 		(
 			data->mlx,
-			data->map.path_NO,
+			data->map.path_no,
 			&data->tex_width,
 			&data->tex_height
 			);
@@ -30,7 +30,7 @@ static void	load_texture_so(t_data *data)
 	data->tex_so.img = mlx_xpm_file_to_image
 		(
 			data->mlx,
-			data->map.path_SO,
+			data->map.path_so,
 			&data->tex_width,
 			&data->tex_height
 			);
@@ -43,7 +43,7 @@ static void	load_texture_we(t_data *data)
 	data->tex_we.img = mlx_xpm_file_to_image
 		(
 			data->mlx,
-			data->map.path_WE,
+			data->map.path_we,
 			&data->tex_width,
 			&data->tex_height
 			);
@@ -56,7 +56,7 @@ static void	load_texture_ea(t_data *data)
 	data->tex_ea.img = mlx_xpm_file_to_image
 		(
 			data->mlx,
-			data->map.path_EA,
+			data->map.path_ea,
 			&data->tex_width,
 			&data->tex_height
 			);

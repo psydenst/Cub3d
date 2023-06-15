@@ -14,14 +14,14 @@
 
 void	free_main(t_data *data)
 {
-	if (data->map.path_NO != NULL)
-		free(data->map.path_NO);
-	if (data->map.path_SO != NULL)
-		free(data->map.path_SO);
-	if (data->map.path_WE != NULL)
-		free(data->map.path_WE);
-	if (data->map.path_EA != NULL)
-		free(data->map.path_EA);
+	if (data->map.path_no != NULL)
+		free(data->map.path_no);
+	if (data->map.path_so != NULL)
+		free(data->map.path_so);
+	if (data->map.path_we != NULL)
+		free(data->map.path_we);
+	if (data->map.path_ea != NULL)
+		free(data->map.path_ea);
 	if (data->map.floor != NULL)
 		free(data->map.floor);
 	if (data->map.ciel != NULL)
