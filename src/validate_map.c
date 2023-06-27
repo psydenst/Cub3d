@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:03:20 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/09 20:46:32 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:25:52 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ void	biggest_width(t_map *map)
 	i = map->map_start;
 	y = i;
 	while (map->world_map[y])
-			y++;
+		y++;
 	map->window_height = y;
 	map->window_width = ft_strlen(map->world_map[i]);
 	while (i < map->window_height)
 	{
 		length = ft_strlen(map->world_map[i]);
 		if (length > map->window_width)
-				map->window_width = length;
+			map->window_width = length;
 		i++;
 	}
 }
@@ -99,7 +99,7 @@ int	nsow10(t_map *map, int x)
 				&& map->world_map[x][i] != 'W' && map->world_map[x][i] != 'S')
 				return (0);
 			if (map->world_map[x][i] == 'N' || map->world_map[x][i] == 'S' ||
-				map->world_map[x][i] == 'O' || map->world_map[x][i] == 'W')
+				map->world_map[x][i] == 'E' || map->world_map[x][i] == 'W')
 			{
 				map->pos_x = x;
 				map->pos_y = i;

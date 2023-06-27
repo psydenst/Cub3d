@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:21:09 by almelo            #+#    #+#             */
-/*   Updated: 2023/06/14 21:03:07 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:51:46 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		ft_is_cub(char *haystack);
 int		verification_main(char **argv, int argc, t_data *data);
 int		wall_spaces(t_map *map);
 int		check_above(t_map *map);
-int empty_textures(t_map *map);
+int		empty_textures(t_map *map);
 
 // FREE_MAIN.C
 void	free_main(t_data *data);

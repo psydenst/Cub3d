@@ -6,25 +6,11 @@
 /*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:33:00 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/12 23:02:32 by almelo           ###   ########.fr       */
+/*   Updated: 2023/06/26 18:04:57 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-int	ft_is_cub(char *haystack)
-{
-	if (ft_strnstr(haystack, ".cub", 4))
-	{
-		free(haystack);
-		return (1);
-	}
-	else
-	{
-		free(haystack);
-		return (0);
-	}
-}
 
 int	validate_cub(char *map_name)
 {

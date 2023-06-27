@@ -6,11 +6,25 @@
 /*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:23:28 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/14 21:00:08 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:52:06 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+int	ft_is_cub(char *haystack)
+{
+	if (ft_strnstr(haystack, ".cub", 4))
+	{
+		free(haystack);
+		return (1);
+	}
+	else
+	{
+		free(haystack);
+		return (0);
+	}
+}
 
 int	get_no(t_map *map, int i)
 {

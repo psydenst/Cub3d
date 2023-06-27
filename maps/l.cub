@@ -1,4 +1,3 @@
-NO ./textures/bluestone.xpm
 
 SO ./textures/colorstone.xpm
 
@@ -17,6 +16,7 @@ C 225,30,0
 	111111111011000001110000000000001
 	100000000011000001110111111111111
 
+NO ./textures/bluestone.xpm
 
 
 

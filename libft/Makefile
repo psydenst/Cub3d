@@ -22,7 +22,7 @@ $(NAME)	: $(OBJ)
 	ar -rc $(NAME) $(OBJ)
 
 .c.o	:
-	$(CC) $(CFLAGS) -I./header -c $< -o $@
+	$(CC) $(CFLAGS) -I./header -fPIE -c $< -o $@
 
 all		: $(NAME)
 

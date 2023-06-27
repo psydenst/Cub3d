@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:23:28 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/14 21:00:45 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:58:55 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	textures_main3(t_map *map, int i)
 int	floor_ciel(t_map *map, int i)
 {
 	if (map->world_map[i][0] == 'F' && map->floor == NULL)
-			map->floor = ft_substr(map->world_map[i], 1,
+		map->floor = ft_substr(map->world_map[i], 1,
 				ft_strlen(map->world_map[i]) - 1);
 	else
 		if (map->ciel == NULL)

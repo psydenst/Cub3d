@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:00:29 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/02 18:27:33 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:02:07 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*remove_sp(char *str)
 		wl.joker = ft_substr(str, wl.begin, wl.end - wl.begin);
 		while ((str[wl.end] == ' ' || str[wl.end] == '\t')
 			&& str[wl.end] != '\0')
-				wl.end++;
+			wl.end++;
 		wl.temp = wl.ret;
 		wl.ret = ft_strjoin(wl.ret, wl.joker);
 		free(wl.joker);

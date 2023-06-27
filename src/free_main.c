@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 22:36:22 by psydenst          #+#    #+#             */
-/*   Updated: 2023/06/12 22:54:58 by almelo           ###   ########.fr       */
+/*   Updated: 2023/06/26 18:01:36 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_copy(t_map *map)
 	int	i;
 
 	i = -1;
-	while (++i <= map->window_height - map->map_start)
+	while (++i < map->window_height - map->map_start)
 		free(map->map_copy[i]);
 	free(map->map_copy);
 }
